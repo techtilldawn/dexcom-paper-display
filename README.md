@@ -11,7 +11,9 @@ sudo apt update && sudo apt install -y \
   liblcms2-dev \
   libopenjp2-7-dev \
   libtiff5-dev \
-  libwebp-dev
+  libwebp-dev \
+  swig \
+  liblgpio-dev
 ```
 
 # TODO: add vendor information
