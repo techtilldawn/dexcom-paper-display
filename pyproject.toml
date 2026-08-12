@@ -1,0 +1,24 @@
+[project]
+name = "cgm-show"
+version = "0.1.0"
+description = "CGM Display Driver for Raspberry Pi e-Paper"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "spidev>=3.8; sys_platform == 'linux'",
+    "pydexcom>=0.5.1",
+    "python-dotenv>=1.0.0",
+    "gpiozero>=2.0.1; sys_platform == 'linux'",
+    "pillow>=10.0.0",
+    "waveshare_epd",
+]
+
+[project.scripts]
+cgm-show = "cgm_show:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv.sources]
+waveshare_epd = { path = "vendor/waveshare_epd", editable = true }
