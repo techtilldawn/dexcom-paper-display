@@ -1,6 +1,5 @@
 
-import dexcom_paper_display
+from .main import main
 
-def main() -> None:
-    dexcom_paper_display.main()
-    print("Hello from cgm-show!")
+if __name__ == "main":
+    main()
