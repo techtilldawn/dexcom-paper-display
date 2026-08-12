@@ -80,7 +80,7 @@ def main() -> None:
     draw.line([(0, 0), (50, 50)], fill=0, width=1)
     draw.line([(0, 50), (50, 0)], fill=0, width=1)
     draw.chord((10, 60, 50, 100), 0, 360, fill=0)
-    draw.ellipse((55, 60), (95, 100), outline=0)
+    draw.ellipse((55, 60, 95, 100), outline=0)
     draw.pieslice((55, 60, 95, 100), 90, 180, outline=0)
     draw.pieslice((55, 60, 95, 100), 270, 360, fill=0)
     draw.polygon([(110, 0), (110, 50), (150, 25)], outline=0)
