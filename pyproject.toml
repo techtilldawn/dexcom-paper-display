@@ -11,6 +11,7 @@ dependencies = [
     "gpiozero>=2.0.1; sys_platform == 'linux'",
     "pillow>=10.0.0",
     "waveshare_epd",
+    "rpi-lgpio",
 ]
 
 [project.scripts]
