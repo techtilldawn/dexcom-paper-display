@@ -34,6 +34,3 @@ def main():
 
     epd.display(epd.getbuffer(image))
     epd.sleep()
-
-if __name__ == "__main__":
-    main()

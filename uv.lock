@@ -12,29 +12,6 @@ wheels = [
 ]
 
 [[package]]
-name = "cgm-show"
-version = "0.1.0"
-source = { editable = "." }
-dependencies = [
-    { name = "dotenv" },
-    { name = "gpiozero", marker = "sys_platform == 'linux'" },
-    { name = "pillow" },
-    { name = "pydexcom" },
-    { name = "spidev", marker = "sys_platform == 'linux'" },
-    { name = "waveshare-epd" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "dotenv", specifier = ">=0.9.9" },
-    { name = "gpiozero", marker = "sys_platform == 'linux'", specifier = ">=2.0.1.post3" },
-    { name = "pillow", specifier = ">=12.3.0" },
-    { name = "pydexcom", specifier = ">=0.5.1" },
-    { name = "spidev", marker = "sys_platform == 'linux'" },
-    { name = "waveshare-epd", editable = "vendor/waveshare_epd" },
-]
-
-[[package]]
 name = "charset-normalizer"
 version = "3.4.9"
 source = { registry = "https://pypi.org/simple" }
@@ -95,14 +72,26 @@ wheels = [
 ]
 
 [[package]]
-name = "dotenv"
-version = "0.9.9"
-source = { registry = "https://pypi.org/simple" }
+name = "dexcom-paper-display"
+version = "0.1.0"
+source = { editable = "." }
 dependencies = [
+    { name = "gpiozero", marker = "sys_platform == 'linux'" },
+    { name = "pillow" },
+    { name = "pydexcom" },
     { name = "python-dotenv" },
+    { name = "spidev", marker = "sys_platform == 'linux'" },
+    { name = "waveshare-epd" },
 ]
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/b2/b7/545d2c10c1fc15e48653c91efde329a790f2eecfbbf2bd16003b5db2bab0/dotenv-0.9.9-py2.py3-none-any.whl", hash = "sha256:29cf74a087b31dafdb5a446b6d7e11cbce8ed2741540e2339c69fbef92c94ce9", size = 1892, upload-time = "2025-02-19T22:15:01.647Z" },
+
+[package.metadata]
+requires-dist = [
+    { name = "gpiozero", marker = "sys_platform == 'linux'", specifier = ">=2.0.1" },
+    { name = "pillow", specifier = ">=10.0.0" },
+    { name = "pydexcom", specifier = ">=0.5.1" },
+    { name = "python-dotenv", specifier = ">=1.0.0" },
+    { name = "spidev", marker = "sys_platform == 'linux'", specifier = ">=3.8" },
+    { name = "waveshare-epd", editable = "vendor/waveshare_epd" },
 ]
 
 [[package]]
