@@ -1,5 +1,5 @@
 [project]
-name = "cgm-show"
+name = "dexcom-paper-display"
 version = "0.1.0"
 description = "CGM Display Driver for Raspberry Pi e-Paper"
 readme = "README.md"
@@ -14,7 +14,7 @@ dependencies = [
 ]
 
 [project.scripts]
-cgm-show = "cgm_show:main"
+dexcom-paper-display = "dexcom-paper-display:main"
 
 [build-system]
 requires = ["hatchling"]
