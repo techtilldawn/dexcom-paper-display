@@ -1,4 +1,4 @@
-import os
+import os, time
 
 from pydexcom import Dexcom
 from dotenv import load_dotenv
@@ -30,12 +30,11 @@ def main():
     epd.Clear(0xFF)
     rootDir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))), 'ext')
 
-    font15 = ImageFont.truetype(os.path.join(rootDir, '0xProtoNerdFontMono-Regular.ttf'), 15)
+    font15 = ImageFont.truetype(os.path.join(rootDir, '0xProtoNerdFontMono-Regular.ttf'), 100)
     image = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame    
     draw = ImageDraw.Draw(image)
-    
-    draw.text((120, 60), glucose_reading, font = font15, fill = 0)
-    epd.display(epd.getbuffer(image))
-    epd.sleep(5)
-    image = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame    
+    draw.text((0, 0), str(glucose_reading), font = font15, fill = 0)
 
+    epd.display(epd.getbuffer(image))
+    time.sleep(5)
+    epd.sleep()
