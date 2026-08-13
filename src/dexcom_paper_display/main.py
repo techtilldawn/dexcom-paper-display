@@ -59,16 +59,22 @@ def get_dexcom_data() -> dict:
 def get_ext_folder() -> str:
     return os.path.join(os.path.dirname(os.path.realpath(__file__)), 'fonts')
 
-def main():
-    data = get_dexcom_data()
-    epd = Display('epd2in13_V3')
-    epd.clear()
-    rootDir = get_ext_folder()
-    font15 = ImageFont.truetype(os.path.join(rootDir, '0xProtoNerdFontMono-Regular.ttf'), 75)
-    image = Image.new('1', epd.size(), 255)  # 255: clear the frame    
-    draw = ImageDraw.Draw(image)
-    draw.text((0, 0), "{0} {1}".format(data["glucose_reading"],data["trend_arrow"]), font = font15, fill = 0)
+def get_font_path(font_name: str = "0xProtoNerdFontMono-Regular.ttf") -> str:
+    return os.path.join(get_ext_folder(), font_name)
 
-    epd.display(image)
-    epd.sleep()
-    time.sleep(5)
+def create_text_image(text: str, size: tuple[int,int] | list[int], font_size: int = 75) -> Image:
+    font = ImageFont.truetype(get_font_path(), font_size)
+    image = Image.new('1', size, 255)  # 255: clear the frame    
+    draw = ImageDraw.Draw(image)
+    draw.text((0, 0), text, font = font, fill = 0)
+    return image
+
+def main():
+    epd = Display('epd2in13_V3')
+    while(True):
+        data = get_dexcom_data()    
+        epd.clear()
+        image = create_text_image("{0} {1}".format(data["glucose_reading"],data["trend_arrow"]), epd.size())
+        epd.display(image)
+        epd.sleep()
+        time.sleep(30)
