@@ -3,7 +3,7 @@ import os
 from pydexcom import Dexcom
 from dotenv import load_dotenv
 from PIL import Image, ImageDraw, ImageFont
-from waveshare_epd import epd2in13b_V3
+from waveshare_epd import epd2in13_V3
 
 class Credentials:
     def __init__(self):
@@ -24,7 +24,7 @@ def main():
 
     print(glucose_reading)
 
-    epd = epd2in13b_V3.EPD()
+    epd = epd2in13_V3.EPD()
     print("clear")
     epd.init()
     epd.Clear(0xFF)

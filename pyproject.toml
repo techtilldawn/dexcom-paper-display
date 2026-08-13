@@ -8,10 +8,9 @@ dependencies = [
     "spidev>=3.8; sys_platform == 'linux'",
     "pydexcom>=0.5.1",
     "python-dotenv>=1.0.0",
-    "gpiozero>=2.0.1; sys_platform == 'linux'",
     "pillow>=10.0.0",
     "waveshare_epd",
-    "rpi-lgpio",
+    "rpi-gpio",
 ]
 
 [project.scripts]
