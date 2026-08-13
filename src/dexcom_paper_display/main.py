@@ -3,7 +3,7 @@ import os
 from pydexcom import Dexcom
 from dotenv import load_dotenv
 from PIL import Image, ImageDraw, ImageFont
-from waveshare_epd import epd2in13_V2
+from waveshare_epd import epd2in13b_V3
 
 class Credentials:
     def __init__(self):
@@ -24,9 +24,9 @@ def main():
 
     print(glucose_reading)
 
-    epd = epd2in13_V2.EPD()
+    epd = epd2in13b_V3.EPD()
     print("clear")
-    epd.init(epd.PART_UPDATE)
+    epd.init()
     epd.Clear(0xFF)
     rootDir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))), 'ext')
 
