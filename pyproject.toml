@@ -9,8 +9,8 @@ dependencies = [
     "pydexcom>=0.5.1",
     "python-dotenv>=1.0.0",
     "pillow>=10.0.0",
-    "waveshare_epd",
     "rpi-gpio",
+    "waveshare-epaper",
 ]
 
 [project.scripts]

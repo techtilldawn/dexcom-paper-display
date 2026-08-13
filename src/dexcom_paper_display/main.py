@@ -1,9 +1,9 @@
 import os, time
+import epaper
 
 from pydexcom import Dexcom
 from dotenv import load_dotenv
 from PIL import Image, ImageDraw, ImageFont
-from waveshare_epd import epd2in13_V3
 
 
 UNICODE_ARROWS_MAP = {
@@ -32,20 +32,20 @@ def get_dexcom_data() -> dict:
         )
     current_reading = dexcom.get_current_glucose_reading()
     # TODO: Error handling, if return trend name doesn't fit mapping...
-    trend_arrow_unicode = UNICODE_ARROWS_MAP[current_reading.trend_direction] if current_reading.trend_direction in UNICODE_ARROWS_MAP else "\uf061"
+    trend_arrow_unicode = UNICODE_ARROWS_MAP[current_reading.trend_direction] if current_reading.trend_direction in UNICODE_ARROWS_MAP else "\uf128"
     return {
         "glucose_reading": str(current_reading.value),
         "trend_arrow": str(trend_arrow_unicode)
     }
 
 def get_ext_folder() -> str:
-    return os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))), 'ext')
-
+    return os.path.join(os.path.dirname(os.path.realpath(__file__)), 'fonts')
 
 def main():
     data = get_dexcom_data()
-    epd = epd2in13_V3.EPD()
+    epd = epaper.epaper('epd2in13_V3').EPD()
     print(str(data["trend_arrow"]))
+    print(get_ext_folder())
     print("clear")
     epd.init()
     epd.Clear(0xFF)
