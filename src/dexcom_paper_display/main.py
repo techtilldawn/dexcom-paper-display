@@ -22,6 +22,24 @@ class Credentials:
         self.username = os.getenv("USERNAME")
         self.password = os.getenv("PASSWORD")
 
+class Display:
+    def __init__(self, display_type):
+        self.epd = epaper.epaper(display_type).EPD()
+
+    def size(self) -> list[int]:
+        return [self.epd.height, self.epd.width]
+
+    def clear(self) -> None:
+        self.epd.init()
+        self.epd.Clear(0xFF)
+
+    def display(self, image: Image) -> None:
+        self.epd.display(self.epd.getbuffer(image))
+
+    def sleep(self) -> None:
+        self.epd.sleep()
+        
+
 def get_dexcom_data() -> dict:
     load_dotenv()
     credentials = Credentials()
@@ -43,18 +61,14 @@ def get_ext_folder() -> str:
 
 def main():
     data = get_dexcom_data()
-    epd = epaper.epaper('epd2in13_V3').EPD()
-    print(str(data["trend_arrow"]))
-    print(get_ext_folder())
-    print("clear")
-    epd.init()
-    epd.Clear(0xFF)
+    epd = Display('epd2in13_V3')
+    epd.clear()
     rootDir = get_ext_folder()
     font15 = ImageFont.truetype(os.path.join(rootDir, '0xProtoNerdFontMono-Regular.ttf'), 75)
-    image = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame    
+    image = Image.new('1', epd.size(), 255)  # 255: clear the frame    
     draw = ImageDraw.Draw(image)
     draw.text((0, 0), "{0} {1}".format(data["glucose_reading"],data["trend_arrow"]), font = font15, fill = 0)
 
-    epd.display(epd.getbuffer(image))
-    time.sleep(5)
+    epd.display(image)
     epd.sleep()
+    time.sleep(5)
