@@ -36,11 +36,14 @@ def get_dexcom_data() -> dict:
     }
 
 def main():
+    print("Startup")
     load_dotenv()
-    epd = Display('epd2in13_V3')
+    epd = Display(os.getenv("DISPLAYTYPE"))
     while(True):
-        data = get_dexcom_data()    
+        data = get_dexcom_data()
+        print("Latest data: {0} {1}".format(data["glucose_reading"],data["trend_arrow"]))
         epd.display_image("{0} {1}".format(data["glucose_reading"],data["trend_arrow"]))
+        print("Start-Sleep 300")
         time.sleep(300)
 
 if __name__ == "__main__":
