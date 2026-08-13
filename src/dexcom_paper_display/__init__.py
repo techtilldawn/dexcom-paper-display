@@ -1,5 +1,3 @@
+""" package entry point."""
 
-from .main import main
-
-if __name__ == "main":
-    main()
+__version__ = "0.1.0"

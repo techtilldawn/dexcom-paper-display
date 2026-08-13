@@ -14,7 +14,7 @@ dependencies = [
 ]
 
 [project.scripts]
-dexcom-paper-display = "dexcom_paper_display:main"
+dexcom-paper-display = "dexcom_paper_display.main:main"
 
 [build-system]
 requires = ["hatchling"]
