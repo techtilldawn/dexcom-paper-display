@@ -16,4 +16,5 @@ sudo apt update && sudo apt install -y \
   liblgpio-dev
 ```
 
-# TODO: add vendor information
+## uv run:
+`uv run --env-file .env --with ./dexcom_paper_display-0.1.0-py3-none-any.whl --no-project -- dexcom-paper-display`

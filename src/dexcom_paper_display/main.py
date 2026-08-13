@@ -41,7 +41,6 @@ class Display:
         
 
 def get_dexcom_data() -> dict:
-    load_dotenv()
     credentials = Credentials()
     dexcom = Dexcom(
         username=credentials.username,
@@ -70,6 +69,7 @@ def create_text_image(text: str, size: tuple[int,int] | list[int], font_size: in
     return image
 
 def main():
+    load_dotenv()
     epd = Display('epd2in13_V3')
     while(True):
         data = get_dexcom_data()    
@@ -77,4 +77,4 @@ def main():
         image = create_text_image("{0} {1}".format(data["glucose_reading"],data["trend_arrow"]), epd.size())
         epd.display(image)
         epd.sleep()
-        time.sleep(30)
+        time.sleep(300)
